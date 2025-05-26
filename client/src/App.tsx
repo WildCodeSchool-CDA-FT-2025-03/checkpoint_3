@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { Card, Input, Button, Row, Col, Typography } from "antd";
+import { Card, Input, Button, Row, Col } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import Header from "./components/Header";
 
-const { Title } = Typography;
-
-interface Country {
+type Country = {
   name: string;
   emoji: string;
   code: string;
-}
+};
 
 export default function App() {
   const [countries, setCountries] = useState<Country[]>([
@@ -39,28 +38,8 @@ export default function App() {
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
-      {/* Header */}
-      <div
-        style={{
-          backgroundColor: "#e91e63",
-          color: "white",
-          padding: "20px 0",
-          textAlign: "center",
-          marginBottom: "40px",
-        }}
-      >
-        <Title level={2} style={{ color: "white", margin: 0 }}>
-          Checkpoint : frontend
-        </Title>
-        <Title
-          level={3}
-          style={{ color: "white", margin: "10px 0 0 0", fontWeight: "normal" }}
-        >
-          Countries
-        </Title>
-      </div>
+      <Header />
 
-      {/* Add Form */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
         <Card style={{ marginBottom: "30px", borderRadius: "8px" }}>
           <Row gutter={16} align="middle">
