@@ -50,53 +50,56 @@ export default function FormCounty() {
 
   return (
     <div>
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmitInfo}>
-        <h2 className="text-2xl font-bold mb-4">Add a New Country</h2>
-        <div className="mb-4">
-          <InputForm
-            title="Name"
-            name="name"
-            placeholder="Name"
-            handle={HandleInfoCountry}
-            required={true}
-            value={(saveCountryInfo && saveCountryInfo.name) || ''}
-          />
-        </div>
-        <div className="mb-4">
-          <InputForm
-            title="Code"
-            name="code"
-            placeholder="Code"
-            handle={HandleInfoCountry}
-            required={true}
-            value={(saveCountryInfo && saveCountryInfo.code) || ''}
-          />
-        </div>
-        <div className="mb-4">
-          <InputForm
-            title="Emoji"
-            name="emoji"
-            placeholder="Emoji"
-            handle={HandleInfoCountry}
-            required={true}
-            value={(saveCountryInfo && saveCountryInfo.emoji) || ''}
-          />
-        </div>
-        <div className="mb-4">
-          <SelectForm
-            name="continent"
-            value={saveCountryInfo?.continent?.id && saveCountryInfo?.continent?.id.toString() || ''}
-            title="Continent"
-            option={options}
-            handle={HandleInfoCountry}
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          Add Country
-        </button>
+      <form className="bg-white shadow-md rounded px-8 pt-6 pb-0 mb-4" onSubmit={handleSubmitInfo}>
+        <section className="mb-4 flex gap-4">
+          <div className="mb-4">
+            <InputForm
+              title="Name"
+              name="name"
+              placeholder="Name"
+              handle={HandleInfoCountry}
+              required={true}
+              value={(saveCountryInfo && saveCountryInfo.name) || ''}
+            />
+          </div>
+          <div className="mb-4">
+            <InputForm
+              title="Code"
+              name="code"
+              placeholder="Code"
+              handle={HandleInfoCountry}
+              required={true}
+              value={(saveCountryInfo && saveCountryInfo.code) || ''}
+            />
+          </div>
+          <div className="mb-4">
+            <InputForm
+              title="Emoji"
+              name="emoji"
+              placeholder="Emoji"
+              handle={HandleInfoCountry}
+              required={true}
+              value={(saveCountryInfo && saveCountryInfo.emoji) || ''}
+            />
+          </div>
+          <div className="mb-4">
+            <SelectForm
+              name="continent"
+              value={saveCountryInfo?.continent?.id && saveCountryInfo?.continent?.id.toString() || ''}
+              title="Continent"
+              option={options}
+              handle={HandleInfoCountry}
+            />
+          </div>
+          <div className="mb-4 align-bottom">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Add Country
+            </button>
+          </div>
+        </section>
       </form>
     </div>
   );
