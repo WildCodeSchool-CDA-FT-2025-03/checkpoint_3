@@ -16,6 +16,7 @@ export class CountryResolver {
 
   @Mutation(() => Country)
   async addCountry(@Arg("data", { validate: true }) data: NewCountryInput) {
+    console.log("✅ Mutation addCountry appelée avec :", data);
     if (await Country.findOneBy({ code: data.code }))
       throw new GraphQLError("a country with that code already exists", {
         extensions: { code: "CODE_ALREADY_EXISTS" },

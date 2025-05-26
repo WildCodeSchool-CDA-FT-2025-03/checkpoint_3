@@ -1,19 +1,22 @@
 import { useState } from "react";
-import { useAddCountryMutation } from "../types/graphql-generated";
+import { useAddCountryMutation, useGetContinentsQuery } from "../types/graphql-generated";
 
 const CountryForm = () => {
-  const [form, setForm] = useState({ name: "", code: "", emoji: "" });
+  const [form, setForm] = useState({ name: "", code: "", emoji: "", continentId: "" });
   const [addCountry, { loading }] = useAddCountryMutation({
     refetchQueries: ["GetCountries"],
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { data: continentsData } = useGetContinentsQuery();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.code || !form.emoji) return;
+    if (!form.name || !form.code || !form.emoji || !form.continentId) return;
+    console.log("form valide")
 
     await addCountry({
       variables: {
@@ -21,17 +24,20 @@ const CountryForm = () => {
           name: form.name,
           code: form.code.toUpperCase(),
           emoji: form.emoji,
+          continent: form.continentId,
         },
       },
     });
 
-    setForm({ name: "", code: "", emoji: "" });
+    setForm({ name: "", code: "", emoji: "", continentId: "" });
   };
+
+  console.log("Envoi des données :", form);
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white border shadow rounded-md p-6 w-full max-w-4xl mx-auto flex flex-col md:flex-row md:items-end gap-4"
+      className="bg-white border shadow rounded-md p-6 w-full max-w-5xl mx-auto flex flex-col md:flex-row md:items-end gap-4"
     >
       {/* Champ Name */}
       <div className="flex flex-col w-full md:w-1/3">
@@ -66,6 +72,19 @@ const CountryForm = () => {
         />
       </div>
 
+      {/* Select continent */}
+      <div className="flex flex-col w-full md:w-1/4">
+        <label className="mb-1 font-medium">Continent</label>
+        <select name="continentId" value={form.continentId} onChange={handleChange} className="border rounded p-2">
+          <option value="">-- Choisir un continent --</option>
+          {continentsData?.continents.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Bouton Add */}
       <button
         type="submit"
@@ -74,7 +93,7 @@ const CountryForm = () => {
       >
         {loading ? "Adding..." : "Add"}
       </button>
-    </form>
+    </form >
   );
 };
 
