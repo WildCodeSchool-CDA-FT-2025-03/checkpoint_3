@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate": "graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
     "@graphql-codegen/cli": "^5.0.6",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.2",
     "@parcel/watcher": "^2.5.1",
     "antd": "^5.25.2",
     "graphql": "^16.11.0",
