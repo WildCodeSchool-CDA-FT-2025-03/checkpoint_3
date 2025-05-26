@@ -1,18 +1,22 @@
 import { Col, Card, Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Country } from "../../pages/Homepage";
-import { useDeleteCountryMutation } from "../../types/graphql-generated";
 import { Link } from "react-router-dom";
+import { COUNTRIES_QUERY } from "../../schemas/county.schema";
+import { useDeleteCountryMutation } from "../../types/graphql-generated";
 
 type CountryCardProps = {
   country: Country;
 };
 
 export default function CountryCard({ country }: CountryCardProps) {
-  const [deleteCountry] = useDeleteCountryMutation();
+  const [deleteCountry] = useDeleteCountryMutation({
+    refetchQueries: [{ query: COUNTRIES_QUERY }],
+    awaitRefetchQueries: true,
+  });
 
-  const handleDelete = () => {
-    deleteCountry({ variables: { id: country.id } });
+  const handleDelete = async (id: number) => {
+    await deleteCountry({ variables: { id } });
   };
 
   return (
@@ -32,7 +36,7 @@ export default function CountryCard({ country }: CountryCardProps) {
           danger
           icon={<DeleteOutlined />}
           size="small"
-          onClick={handleDelete}
+          onClick={() => handleDelete(country.id)}
           style={{
             position: "absolute",
             top: "8px",
