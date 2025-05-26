@@ -39,3 +39,14 @@ export const COUNTRY_QUERY = gql`
     }
   }
 `;
+
+export const UPDATE_COUNTRY_MUTATION = gql`
+  mutation UpdateCountry($id: Float!, $data: NewCountryInput!) {
+    updateCountry(id: $id, data: $data) {
+      id
+      name
+      emoji
+      code
+    }
+  }
+`;
