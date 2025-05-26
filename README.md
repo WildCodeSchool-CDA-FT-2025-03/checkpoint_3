@@ -52,3 +52,4 @@ Voici un aperçu de ce que cela pourrait donner :
 ## Warning
 
 :warning: N'oublie pas de faire un commit précis pour chaque point que tu réalises (env@1-IntegrationCSS)
+# checkpoint_3
