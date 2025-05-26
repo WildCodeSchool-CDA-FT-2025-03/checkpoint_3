@@ -9,3 +9,14 @@ export const COUNTRIES_QUERY = gql`
     }
   }
 `;
+
+export const COUNTRY_QUERY = gql`
+  query Country($code: String!) {
+    country(code: $code) {
+      code
+      emoji
+      id
+      name
+    }
+  }
+`;
