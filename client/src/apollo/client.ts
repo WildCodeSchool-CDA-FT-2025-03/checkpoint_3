@@ -4,13 +4,18 @@ import { onError } from "@apollo/client/link/error";
 
 // Gestion des erreurs
 const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.forEach(({ message, locations, path }) =>
-      console.error(
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path }) => {
+      // On pourrait envoyer ces erreurs à un service de monitoring comme Sentry
+      throw new Error(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
-    );
-  if (networkError) console.error(`[Network error]: ${networkError}`);
+      );
+    });
+  }
+  if (networkError) {
+    // On pourrait envoyer ces erreurs à un service de monitoring comme Sentry
+    throw new Error(`[Network error]: ${networkError}`);
+  }
 });
 
 // Configuration du lien HTTP
