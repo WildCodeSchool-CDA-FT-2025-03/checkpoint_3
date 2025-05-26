@@ -10,3 +10,11 @@ export const COUNTRIES_QUERY = gql`
     }
   }
 `;
+
+export const ADD_COUNTRY_MUTATION = gql`
+  mutation AddCountry($data: NewCountryInput!) {
+    addCountry(data: $data) {
+      id
+    }
+  }
+`;
