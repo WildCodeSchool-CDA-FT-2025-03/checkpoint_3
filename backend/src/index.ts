@@ -10,7 +10,7 @@ import http from "http";
 import schemaPromise from "./schema";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-const port = process.env.SERVER_PORT || 4000;
+const port = parseInt(process.env.SERVER_PORT || "4000", 10);
 
 const allowedOrigins = [
   "http://localhost:5173", // Vite dev server
@@ -33,10 +33,7 @@ schemaPromise.then(async (schema) => {
   app.use(express.json(), expressMW);
   const { url } = await startStandaloneServer(server, {
     listen: { port },
-    cors: {
-      origin: allowedOrigins,
-      credentials: true,
-    },
+    context: async ({ req, res }) => ({ req, res }),
   });
   console.info(`
 🚀 Server is running!
