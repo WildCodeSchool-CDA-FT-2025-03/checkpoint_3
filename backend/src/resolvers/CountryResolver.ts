@@ -26,4 +26,15 @@ export class CountryResolver {
     const { id } = await newCountry.save();
     return Country.findOne({ where: { id }, relations: { continent: true } });
   }
+
+  @Mutation(() => Country)
+  async deleteCountry(@Arg("id", { validate: true }) id: number) {
+    const country = await Country.findOne({ where: { id } });
+    if (!country)
+      throw new GraphQLError("country not found", {
+        extensions: { code: "COUNTRY_NOT_FOUND" },
+      });
+    await country.remove();
+    return country;
+  }
 }
