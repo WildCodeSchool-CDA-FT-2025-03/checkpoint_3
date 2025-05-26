@@ -6,8 +6,6 @@ import AddCountry from "../components/AddCountry";
 function CountriesList() {
   const { data, loading, error } = useGetCountriesQuery();
 
-  console.log(data);
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
