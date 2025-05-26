@@ -18,7 +18,7 @@ services:
     stop_grace_period: 0s
     build:
       context: ./client
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     ports:
       - 5173:5173
     volumes:
