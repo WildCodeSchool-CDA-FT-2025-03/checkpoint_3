@@ -6,7 +6,7 @@ type CountryProps = {
 
 
 const CountryCard = ({ name, code, emoji }: CountryProps) => {
-  const flag = emoji || code;
+  const flag = emoji;
 
   return (
     <article className="bg-white rounded-md border shadow-sm p-3 flex flex-col items-center justify-center text-center hover:shadow-md transition-shadow w-24 h-24 mx-auto">

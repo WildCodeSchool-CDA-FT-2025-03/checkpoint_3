@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import CountryCard from "../components/CountryCard";
 import { useGetCountriesQuery } from "../types/graphql-generated";
+import CountryForm from "../components/CountryForm";
 
 const Home = () => {
   const { data, loading, error } = useGetCountriesQuery();
@@ -11,7 +12,8 @@ const Home = () => {
   if (error) return <p>Erreur : {error.message}</p>;
 
   return (
-    <div className="p-4">
+    <div className="p-4 flex flex-column gap-10">
+      <CountryForm />
       <section className="flex flex-wrap justify-center gap-2">
         {data?.countries.map((c) => (
           <Link to="/" key={c.code} className="[text-decoration:none] [color:inherit]">
