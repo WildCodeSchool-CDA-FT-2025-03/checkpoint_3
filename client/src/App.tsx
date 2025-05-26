@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Layout from "./components/layout/Layout";
 import CountryDetail from "./pages/CountryDetail";
+import EditCountry from "./pages/EditCountry";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "/country/:id",
         element: <CountryDetail />,
+      },
+      {
+        path: "/country/:id/edit",
+        element: <EditCountry />,
       },
     ],
   },
