@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useGetCountriesQuery } from "../generated/graphql-types";
 
 function CountriesList() {
@@ -11,9 +12,11 @@ function CountriesList() {
       <h1>Countries List</h1>
       <ul>
         {data?.countries.map((country) => (
-          <li key={country.id}>
-            {country.name}
-            <span>{country.emoji}</span>
+          <li key={country.code}>
+            <Link to={`/countries/${country.code}`}>
+              {country.name}
+              <span>{country.emoji}</span>
+            </Link>
           </li>
         ))}
       </ul>
