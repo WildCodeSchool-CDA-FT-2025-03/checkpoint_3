@@ -15,9 +15,15 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 type Documents = {
     "\n  query GetAllCountries {\n    countries {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n": typeof types.GetAllCountriesDocument,
+    "\n  query GetCountry($code: String!) {\n    country(code: $code) {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n": typeof types.GetCountryDocument,
+    "\n  query GetAllContinents {\n    continents {\n      id\n      name\n    }\n  }\n": typeof types.GetAllContinentsDocument,
+    "\n  mutation CreateCountry($data: NewCountryInput!) {\n    addCountry(data: $data) {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n": typeof types.CreateCountryDocument,
 };
 const documents: Documents = {
     "\n  query GetAllCountries {\n    countries {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n": types.GetAllCountriesDocument,
+    "\n  query GetCountry($code: String!) {\n    country(code: $code) {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n": types.GetCountryDocument,
+    "\n  query GetAllContinents {\n    continents {\n      id\n      name\n    }\n  }\n": types.GetAllContinentsDocument,
+    "\n  mutation CreateCountry($data: NewCountryInput!) {\n    addCountry(data: $data) {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n": types.CreateCountryDocument,
 };
 
 /**
@@ -38,6 +44,18 @@ export function gql(source: string): unknown;
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetAllCountries {\n    countries {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetAllCountries {\n    countries {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetCountry($code: String!) {\n    country(code: $code) {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetCountry($code: String!) {\n    country(code: $code) {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetAllContinents {\n    continents {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  query GetAllContinents {\n    continents {\n      id\n      name\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation CreateCountry($data: NewCountryInput!) {\n    addCountry(data: $data) {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation CreateCountry($data: NewCountryInput!) {\n    addCountry(data: $data) {\n      id\n      name\n      code\n      emoji\n      continent {\n        name\n      }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

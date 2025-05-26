@@ -1,7 +1,12 @@
-import { Container } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
+
+import AddIcon from '@mui/icons-material/Add';
 import CountryList from '../components/CountryList';
+import { useNavigate } from 'react-router-dom';
 
 const CountryPage = () => {
+  const navigate = useNavigate();
+
   return (
     <Container
       component="main"
@@ -13,6 +18,15 @@ const CountryPage = () => {
         gap: 3
       }}
     >
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={() => navigate('/country/new')}
+        >
+          Ajouter un pays
+        </Button>
+      </Box>
       <CountryList />
     </Container>
   );

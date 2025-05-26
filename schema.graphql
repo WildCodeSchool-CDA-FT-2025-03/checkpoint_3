@@ -1,0 +1,38 @@
+type Query {
+  countries: [Country!]!
+  country(code: String!): Country!
+  continents: [Continent!]!
+}
+
+type Mutation {
+  addCountry(data: NewCountryInput!): Country!
+  addContinent(data: NewContinentInput!): Continent!
+}
+
+type Country {
+  id: Int!
+  name: String!
+  code: String!
+  emoji: String!
+  continent: Continent
+}
+
+type Continent {
+  id: Int!
+  name: String!
+}
+
+input NewCountryInput {
+  name: String!
+  code: String!
+  emoji: String!
+  continent: ObjectId
+}
+
+input NewContinentInput {
+  name: String!
+}
+
+input ObjectId {
+  id: Int!
+}
