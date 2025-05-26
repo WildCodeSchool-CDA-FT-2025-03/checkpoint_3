@@ -4,15 +4,9 @@ import { Country } from "../App";
 
 type CountryCardProps = {
   country: Country;
-  handleDelete: (index: number) => void;
-  index: number;
 };
 
-export default function CountryCard({
-  country,
-  handleDelete,
-  index,
-}: CountryCardProps) {
+export default function CountryCard({ country }: CountryCardProps) {
   return (
     <Col xs={12} sm={8} md={6} lg={4}>
       <Card
@@ -30,7 +24,7 @@ export default function CountryCard({
           danger
           icon={<DeleteOutlined />}
           size="small"
-          onClick={() => handleDelete(index)}
+          onClick={() => console.info("delete country: ", country)}
           style={{
             position: "absolute",
             top: "8px",
