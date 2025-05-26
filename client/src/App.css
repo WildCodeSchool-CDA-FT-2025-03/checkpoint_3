@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 5rem;
+}
+
+.card {
+  width: 15%;
+  padding: 2rem;
+  border: 1px solid black;
+  text-align: center;
+  margin: 2rem;
+  border-radius: 0.5rem;
+}
+
+.header {
+  background-color: pink;
+  text-align: center;
+  height: 8rem;
+
+  h1 {
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    color: white;
+  }
+}
