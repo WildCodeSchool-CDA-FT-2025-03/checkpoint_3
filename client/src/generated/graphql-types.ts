@@ -92,7 +92,7 @@ export type AddCountryMutationVariables = Exact<{
 }>;
 
 
-export type AddCountryMutation = { __typename?: 'Mutation', addCountry: { __typename?: 'Country', code: string, name: string, emoji: string, continent?: { __typename?: 'Continent', name: string } | null } };
+export type AddCountryMutation = { __typename?: 'Mutation', addCountry: { __typename?: 'Country', code: string, name: string, emoji: string, continent?: { __typename?: 'Continent', id: number } | null } };
 
 
 export const GetCountriesDocument = gql`
@@ -191,7 +191,7 @@ export const AddCountryDocument = gql`
     name
     emoji
     continent {
-      name
+      id
     }
   }
 }

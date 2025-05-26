@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useGetCountriesQuery } from "../generated/graphql-types";
-import AddCountry from "./AddCountry";
+// components
+import AddCountry from "../components/AddCountry";
 
 function CountriesList() {
   const { data, loading, error } = useGetCountriesQuery();

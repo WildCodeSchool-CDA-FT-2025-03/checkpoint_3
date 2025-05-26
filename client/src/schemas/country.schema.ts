@@ -33,7 +33,7 @@ export const ADD_COUNTRY = gql`
       name
       emoji
       continent {
-        name
+        id
       }
     }
   }

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import App from "./App";
-import CountryDetails from "./components/CountryDetails";
-import CountriesList from "./components/CountriesList";
+import CountryDetails from "./pages/CountryDetails";
+import CountriesList from "./pages/CountriesList";
 
 const router = createBrowserRouter([
   {
