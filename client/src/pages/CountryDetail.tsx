@@ -17,6 +17,7 @@ import {
   useCountryQuery,
   useDeleteCountryMutation,
 } from "../types/graphql-generated";
+import { COUNTRIES_QUERY } from "../schemas/county.schema";
 
 const { Title } = Typography;
 
@@ -27,7 +28,6 @@ export default function CountryDetail() {
 
   const { data, loading, error } = useCountryQuery({
     variables: { code: id?.toString() || "" },
-    skip: !id,
   });
 
   const handleDelete = async () => {
@@ -35,7 +35,8 @@ export default function CountryDetail() {
       try {
         await deleteCountry({
           variables: { id: data.country.id },
-          refetchQueries: ["Countries"],
+          refetchQueries: [{ query: COUNTRIES_QUERY }],
+          awaitRefetchQueries: true,
         });
         navigate("/");
       } catch (error) {
