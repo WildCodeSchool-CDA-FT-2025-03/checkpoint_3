@@ -1,10 +1,10 @@
 import "./App.css";
-import { useCountriesQuery } from "./generated/graphql-types";
+import { useAllCountriesQuery } from "./generated/graphql-types";
 import CountryCard from "./components/CountryCard";
 import Header from "./components/Header";
 
 function App() {
-  const { data, loading, error } = useCountriesQuery();
+  const { data, loading, error } = useAllCountriesQuery();
 
   if (error) return <p>Error</p>;
   if (loading) return <p>loading</p>;
