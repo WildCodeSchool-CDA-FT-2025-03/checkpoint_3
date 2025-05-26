@@ -1,6 +1,6 @@
 import { Col, Row, Card, Input, Button } from "antd";
 import { useState } from "react";
-import { useAddCountryMutation } from "../types/graphql-generated";
+import { useAddCountryMutation } from "../../types/graphql-generated";
 
 export default function AddForm() {
   const [addCountry] = useAddCountryMutation();

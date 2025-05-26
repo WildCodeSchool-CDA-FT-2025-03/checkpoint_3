@@ -1,7 +1,7 @@
 import { Col, Card, Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import { Country } from "../App";
-import { useDeleteCountryMutation } from "../types/graphql-generated";
+import { Country } from "../../pages/Homepage";
+import { useDeleteCountryMutation } from "../../types/graphql-generated";
 
 type CountryCardProps = {
   country: Country;
