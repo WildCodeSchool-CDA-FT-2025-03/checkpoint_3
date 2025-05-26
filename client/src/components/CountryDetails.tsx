@@ -12,13 +12,13 @@ function CountryDetails() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <>
-      <h1>Country Details</h1>
-      <h2>{data?.country?.name}</h2>
-      <p>{data?.country?.code}</p>
-      <p>{data?.country?.emoji}</p>
-      <p>{data?.country?.continent?.name}</p>
-    </>
+    <section className="flex flex-col items-center gap-2 mt-8">
+      <span>{data?.country?.emoji}</span>
+      <h2 className="text-xl font-bold">
+        Name : {data?.country?.name} ({data?.country?.code})
+      </h2>
+      <p className="font-semibold">Continent : {data?.country?.continent?.name}</p>
+    </section>
   );
 }
 
