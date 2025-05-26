@@ -1,7 +1,10 @@
 import { Col, Row, Card, Input, Button } from "antd";
 import { useState } from "react";
+import { useAddCountryMutation } from "../types/graphql-generated";
 
 export default function AddForm() {
+  const [addCountry] = useAddCountryMutation();
+
   const [newCountry, setNewCountry] = useState({
     name: "",
     emoji: "",
@@ -10,7 +13,15 @@ export default function AddForm() {
 
   const handleAdd = () => {
     if (newCountry.name && newCountry.emoji && newCountry.code) {
-      console.info("newCountry: ", newCountry);
+      addCountry({
+        variables: {
+          data: {
+            name: newCountry.name,
+            emoji: newCountry.emoji,
+            code: newCountry.code,
+          },
+        },
+      });
       setNewCountry({ name: "", emoji: "", code: "" });
     }
   };
