@@ -2,4 +2,6 @@
 
 @theme {
   --color-wild: #f7146b;
+  --font-emoji: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji",
+    "Twemoji Mozilla", "Noto Color Emoji", "Android Emoji";
 }

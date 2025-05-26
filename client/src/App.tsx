@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="p-4">
+      <main className="p-4 bg-stone-50 min-h-screen">
         <Outlet />
       </main>
     </>
