@@ -98,7 +98,6 @@ export default function CountryDetail() {
 
   return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 20px" }}>
-      {/* Header avec bouton retour */}
       <div style={{ marginBottom: "24px" }}>
         <Button
           type="text"
@@ -110,7 +109,6 @@ export default function CountryDetail() {
         </Button>
       </div>
 
-      {/* Card principale avec les détails */}
       <Card
         style={{ borderRadius: "8px" }}
         actions={[
@@ -133,7 +131,6 @@ export default function CountryDetail() {
           </Button>,
         ]}
       >
-        {/* En-tête avec drapeau et nom */}
         <div
           style={{
             textAlign: "center",
@@ -161,16 +158,17 @@ export default function CountryDetail() {
           </Title>
         </div>
 
-        {/* Informations détaillées */}
         <Descriptions
           title="Informations détaillées"
           bordered
           column={1}
           size="middle"
-          labelStyle={{
-            backgroundColor: "#fafafa",
-            fontWeight: "600",
-            width: "200px",
+          styles={{
+            label: {
+              backgroundColor: "#fafafa",
+              fontWeight: "600",
+              width: "200px",
+            },
           }}
         >
           <Descriptions.Item label="Nom du pays">
@@ -195,7 +193,6 @@ export default function CountryDetail() {
           </Descriptions.Item>
         </Descriptions>
 
-        {/* Section continent (si disponible) */}
         {country.continent && (
           <div style={{ marginTop: "24px" }}>
             <Descriptions
@@ -203,10 +200,12 @@ export default function CountryDetail() {
               bordered
               column={1}
               size="middle"
-              labelStyle={{
-                backgroundColor: "#fafafa",
-                fontWeight: "600",
-                width: "200px",
+              styles={{
+                label: {
+                  backgroundColor: "#fafafa",
+                  fontWeight: "600",
+                  width: "200px",
+                },
               }}
             >
               <Descriptions.Item label="Continent">
@@ -217,7 +216,6 @@ export default function CountryDetail() {
         )}
       </Card>
 
-      {/* Actions supplémentaires */}
       <div
         style={{
           marginTop: "24px",
