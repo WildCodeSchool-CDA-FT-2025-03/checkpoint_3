@@ -94,6 +94,11 @@ export type AddCountryMutationVariables = Exact<{
 
 export type AddCountryMutation = { __typename?: 'Mutation', addCountry: { __typename?: 'Country', code: string, emoji: string, id: number, name: string } };
 
+export type QueryContinentQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type QueryContinentQuery = { __typename?: 'Query', continents: Array<{ __typename?: 'Continent', id: number, name: string }> };
+
 
 export const CountriesDocument = gql`
     query Countries {
@@ -216,3 +221,43 @@ export function useAddCountryMutation(baseOptions?: Apollo.MutationHookOptions<A
 export type AddCountryMutationHookResult = ReturnType<typeof useAddCountryMutation>;
 export type AddCountryMutationResult = Apollo.MutationResult<AddCountryMutation>;
 export type AddCountryMutationOptions = Apollo.BaseMutationOptions<AddCountryMutation, AddCountryMutationVariables>;
+export const QueryContinentDocument = gql`
+    query QueryContinent {
+  continents {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useQueryContinentQuery__
+ *
+ * To run a query within a React component, call `useQueryContinentQuery` and pass it any options that fit your needs.
+ * When your component renders, `useQueryContinentQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useQueryContinentQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useQueryContinentQuery(baseOptions?: Apollo.QueryHookOptions<QueryContinentQuery, QueryContinentQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<QueryContinentQuery, QueryContinentQueryVariables>(QueryContinentDocument, options);
+      }
+export function useQueryContinentLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<QueryContinentQuery, QueryContinentQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<QueryContinentQuery, QueryContinentQueryVariables>(QueryContinentDocument, options);
+        }
+export function useQueryContinentSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<QueryContinentQuery, QueryContinentQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<QueryContinentQuery, QueryContinentQueryVariables>(QueryContinentDocument, options);
+        }
+export type QueryContinentQueryHookResult = ReturnType<typeof useQueryContinentQuery>;
+export type QueryContinentLazyQueryHookResult = ReturnType<typeof useQueryContinentLazyQuery>;
+export type QueryContinentSuspenseQueryHookResult = ReturnType<typeof useQueryContinentSuspenseQuery>;
+export type QueryContinentQueryResult = Apollo.QueryResult<QueryContinentQuery, QueryContinentQueryVariables>;

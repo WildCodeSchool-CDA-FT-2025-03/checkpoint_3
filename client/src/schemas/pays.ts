@@ -31,3 +31,12 @@ export const ADD_COUNTRY_MUTATION = gql`
     }
   }
 `;
+
+export const CONTINENTS_QUERY = gql`
+  query QueryContinent {
+    continents {
+      id
+      name
+    }
+  }
+`;

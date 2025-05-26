@@ -1,22 +1,39 @@
 import InputForm from "../Form/InputForm";
-import { NewCountryInput, useAddCountryMutation } from "../../types/graphql-generated";
+import SelectForm from "../Form/SelectForm";
+import { NewCountryInput, useAddCountryMutation, useQueryContinentQuery } from "../../types/graphql-generated";
 import { useState } from "react";
 
 export default function FormCounty() {
   const [saveCountryInfo, setCountryInfo] = useState<NewCountryInput | null>({
     name: '',
+    continent: { id: 0 }, // Assuming continent is an object with an id
     code: '',
     emoji: '',
   });
   const [AddCountryMutation] = useAddCountryMutation();
+  const { data, loading } = useQueryContinentQuery();
+
+  if (loading || !data?.continents) return null;
+  const options = data.continents.map((continent) => ({
+    key: continent.id.toString(),
+    value: continent.name,
+  }));
 
   const HandleInfoCountry = (
     e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
   ) => {
     if (saveCountryInfo) {
-      setCountryInfo(() => ({ ...saveCountryInfo, [e.target.name]: e.target.value }));
+      if( e.target.name === 'continent') {
+        const continentId = parseInt(e.target.value, 10);
+        setCountryInfo(() => ({ ...saveCountryInfo, continent: { id: continentId } }));
+      }
+      else
+      {
+        setCountryInfo(() => ({ ...saveCountryInfo, [e.target.name]: e.target.value }));
+      }
     }
   };
+
   const handleSubmitInfo = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if(!saveCountryInfo) return;
@@ -63,6 +80,15 @@ export default function FormCounty() {
             handle={HandleInfoCountry}
             required={true}
             value={(saveCountryInfo && saveCountryInfo.emoji) || ''}
+          />
+        </div>
+        <div className="mb-4">
+          <SelectForm
+            name="continent"
+            value={saveCountryInfo?.continent?.id && saveCountryInfo?.continent?.id.toString() || ''}
+            title="Continent"
+            option={options}
+            handle={HandleInfoCountry}
           />
         </div>
         <button
