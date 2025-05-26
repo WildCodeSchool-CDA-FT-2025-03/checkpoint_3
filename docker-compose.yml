@@ -24,3 +24,16 @@ services:
     volumes:
       - ./client/:/app/
       - /app/node_modules
+
+  codegen:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    command: npm run codegen:watch
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      server:
+        condition: service_healthy
+

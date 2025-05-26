@@ -1,10 +1,25 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.tsx";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
-createRoot(document.getElementById("root")!).render(
+//import { ApolloProvider } from '@apollo/client';
+
+import { ApolloProvider } from '@apollo/client';
+
+import App from './App.tsx';
+import client from './services/apolloClient.ts';
+
+//import './index.css';
+
+const root = document.getElementById('root');
+
+if (!root) {
+  throw new Error('Root element not found');
+}
+
+createRoot(root).render(
   <StrictMode>
-    <App />
-  </StrictMode>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </StrictMode>,
 );
