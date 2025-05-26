@@ -20,3 +20,14 @@ export const COUNTRY_QUERY = gql`
     }
   }
 `;
+
+export const ADD_COUNTRY_MUTATION = gql`
+  mutation AddCountry($data: NewCountryInput!) {
+    addCountry(data: $data) {
+      code
+      emoji
+      id
+      name
+    }
+  }
+`;
