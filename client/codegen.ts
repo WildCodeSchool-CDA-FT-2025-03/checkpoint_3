@@ -2,18 +2,20 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: {
-    'http://localhost:4000/graphql': {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    },
-  },
+  schema: 'http://localhost:4000/graphql',
   documents: './src/queries/**/*.graphql',
   generates: {
-    './src/generated/': {
-      preset: 'client',
-      plugins: [],
+    './src/generated/graphql.tsx': {
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-react-apollo',
+      ],
+      config: {
+        withHooks: true, // génère les hooks useGetCountriesQuery
+        withHOC: false,
+        withComponent: false,
+      },
     },
     './src/generated/graphql.schema.json': {
       plugins: ['introspection'],
