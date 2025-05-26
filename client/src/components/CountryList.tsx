@@ -11,24 +11,11 @@ import {
 } from '@mui/material';
 
 import { GET_ALL_COUNTRIES } from '../graphql/queries';
+import { GetAllCountriesQuery } from '../gql/graphql';
 import { useQuery } from '@apollo/client';
 
-interface Country {
-  id: number;
-  name: string;
-  code: string;
-  emoji: string;
-  continent: {
-    name: string;
-  };
-}
-
-interface CountriesData {
-  countries: Country[];
-}
-
 const CountryList = () => {
-  const { loading, error, data } = useQuery<CountriesData>(GET_ALL_COUNTRIES);
+  const { loading, error, data } = useQuery<GetAllCountriesQuery>(GET_ALL_COUNTRIES);
 
   // Fonction pour convertir le code pays en format compatible avec country-flag-icons
   const getValidCountryCode = (code: string): string => {
@@ -137,7 +124,8 @@ const CountryList = () => {
                       justifyContent: 'center',
                       overflow: 'hidden',
                       borderRadius: 1,
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                      border: '1px solid',
+                      borderColor: 'grey.100',
                     }}
                   >
                     <FlagComponent
