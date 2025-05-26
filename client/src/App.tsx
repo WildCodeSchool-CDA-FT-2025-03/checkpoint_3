@@ -5,6 +5,7 @@ import CountryCard from "./components/CountryCard";
 import { useCountriesQuery } from "./types/graphql-generated";
 
 export type Country = {
+  id: number;
   name: string;
   emoji: string;
   code: string;
