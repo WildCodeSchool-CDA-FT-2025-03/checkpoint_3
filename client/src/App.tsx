@@ -16,8 +16,6 @@ export default function App() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  console.log(data);
-
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
       <Header />
