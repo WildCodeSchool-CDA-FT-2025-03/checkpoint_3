@@ -23,7 +23,7 @@ export default function CountryCard({
           position: "relative",
           cursor: "default",
         }}
-        bodyStyle={{ padding: "20px" }}
+        styles={{ body: { padding: "20px" } }}
       >
         <Button
           type="text"
