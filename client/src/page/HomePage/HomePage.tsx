@@ -1,20 +1,32 @@
-import { useGetCountriesQuery } from '@/generated/graphql';
+// import { useGetCountriesQuery } from '../../generated/graphql';
 
-const HomePage = () => {
-  const { data, loading, error } = useGetCountriesQuery();
+// const HomePage = () => {
+//   const { data, loading, error } = useGetCountriesQuery();
 
-  if (loading) return <p>Chargement...</p>;
-  if (error) return <p>Erreur : {error.message}</p>;
+//   if (loading) return <p>Chargement...</p>;
+//   if (error) return <p>Erreur : {error.message}</p>;
 
+//   return (
+//     <ul>
+//       {data?.countries.map((country) => (
+//         <li key={country.code}>
+//           {country.emoji} {country.name}
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// };
+
+// export default HomePage;
+
+import HomeRoot from "../../components/HomeRoot/HomeRoot";
+
+function HomePage() {
   return (
-    <ul>
-      {data?.countries.map((country) => (
-        <li key={country.code}>
-          {country.emoji} {country.name}
-        </li>
-      ))}
-    </ul>
+    <div>
+      <HomeRoot />
+    </div>
   );
-};
+}
 
 export default HomePage;

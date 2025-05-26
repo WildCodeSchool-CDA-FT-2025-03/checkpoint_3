@@ -1,31 +1,43 @@
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.tsx';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { StrictMode } from 'react';
 
+// Ajout pour Apollo Client
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+import HomePage from './page/HomePage/HomePage.tsx';
+
 const dataRouter = [
-  /* {ListDataRouter[0].path} */
-    {
-        path: "/",
-        element: <h1>page</h1>,
-    },
-]
+  {
+    path: '/',
+    element: <HomePage />,
+  },
+];
 
 const router = createBrowserRouter([
-    {
-     element: <App />,
-     children: dataRouter
-    },
+  {
+    element: <App />,
+    children: dataRouter,
+  },
 ]);
 
-const rootElement = document.getElementById("root");
+// Création du client Apollo
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache(),
+});
+
+const rootElement = document.getElementById('root');
 if (rootElement == null) {
   throw new Error(`Your HTML Document should contain a <div id="root"></div>`);
 }
 
-createRoot(document.getElementById('root')!).render(
-     <StrictMode>
-       <RouterProvider router={router} />
-     </StrictMode>
-)
+createRoot(rootElement).render(
+  <StrictMode>
+    <ApolloProvider client={client}>
+      <RouterProvider router={router} />
+    </ApolloProvider>
+  </StrictMode>
+);
