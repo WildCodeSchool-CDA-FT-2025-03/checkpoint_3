@@ -1,35 +1,13 @@
-import { Row } from "antd";
-import Header from "./components/Header";
-import AddForm from "./components/AddForm";
-import CountryCard from "./components/CountryCard";
-import { useCountriesQuery } from "./types/graphql-generated";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Homepage from "./pages/Homepage";
 
-export type Country = {
-  id: number;
-  name: string;
-  emoji: string;
-  code: string;
-};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Homepage />,
+  },
+]);
 
-export default function App() {
-  const { data, loading, error } = useCountriesQuery();
+const App = () => <RouterProvider router={router} />;
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
-  return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
-      <Header />
-
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        <AddForm />
-
-        <Row gutter={[16, 16]}>
-          {data?.countries.map((country, index) => (
-            <CountryCard key={index} country={country} />
-          ))}
-        </Row>
-      </div>
-    </div>
-  );
-}
+export default App;
