@@ -1,11 +1,7 @@
+import Countries from "./pages/Countries";
+
 function App() {
-  return (
-    <>
-      <div className="bg-headerBg ">
-        <h1 className="text-white">hello!</h1>
-      </div>
-    </>
-  );
+  return <Countries />;
 }
 
 export default App;
