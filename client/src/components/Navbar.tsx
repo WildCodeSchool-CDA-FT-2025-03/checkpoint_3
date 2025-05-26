@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export default function Navbar() {
   return (
     <header className="bg-pink-600 text-white py-6 shadow-md">
