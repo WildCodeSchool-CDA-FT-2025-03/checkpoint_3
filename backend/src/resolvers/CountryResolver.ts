@@ -27,7 +27,7 @@ export class CountryResolver {
     return Country.findOne({ where: { id }, relations: { continent: true } });
   }
 
-  @Mutation(() => Country)
+  @Mutation(() => Boolean)
   async deleteCountry(@Arg("id", { validate: true }) id: number) {
     const country = await Country.findOne({ where: { id } });
     if (!country)
@@ -35,6 +35,6 @@ export class CountryResolver {
         extensions: { code: "COUNTRY_NOT_FOUND" },
       });
     await country.remove();
-    return country;
+    return true;
   }
 }
