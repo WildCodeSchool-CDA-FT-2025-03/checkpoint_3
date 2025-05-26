@@ -26,3 +26,18 @@ export const DELETE_COUNTRY_MUTATION = gql`
     }
   }
 `;
+
+export const COUNTRY_QUERY = gql`
+  query Country($code: String!) {
+    country(code: $code) {
+      id
+      name
+      emoji
+      code
+      continent {
+        id
+        name
+      }
+    }
+  }
+`;

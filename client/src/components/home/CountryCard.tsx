@@ -2,6 +2,7 @@ import { Col, Card, Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Country } from "../../pages/Homepage";
 import { useDeleteCountryMutation } from "../../types/graphql-generated";
+import { Link } from "react-router-dom";
 
 type CountryCardProps = {
   country: Country;
@@ -15,7 +16,7 @@ export default function CountryCard({ country }: CountryCardProps) {
   };
 
   return (
-    <Col xs={12} sm={8} md={6} lg={4}>
+    <Col xs={12} sm={8} md={6} lg={4} style={{ cursor: "pointer" }}>
       <Card
         hoverable
         style={{
@@ -39,12 +40,14 @@ export default function CountryCard({ country }: CountryCardProps) {
             opacity: 0.7,
           }}
         />
-        <div style={{ marginBottom: "8px", fontWeight: 500 }}>
-          {country.name}
-        </div>
-        <div style={{ fontSize: "48px", lineHeight: "48px" }}>
-          {country.emoji}
-        </div>
+        <Link to={`/country/${country.code}`}>
+          <div style={{ marginBottom: "8px", fontWeight: 500, color: "black" }}>
+            {country.name}
+          </div>
+          <div style={{ fontSize: "48px", lineHeight: "48px", color: "black" }}>
+            {country.emoji}
+          </div>
+        </Link>
       </Card>
     </Col>
   );
