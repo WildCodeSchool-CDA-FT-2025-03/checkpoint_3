@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { ApolloProvider } from '@apollo/client';
 import App from './App';
+import CountryDetailPage from './pages/CountryDetailPage';
 import CountryPage from './pages/CountryPage';
 import { StrictMode } from 'react';
 import { apolloClient } from './apollo/client';
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <CountryPage /> },
       { path: 'country', element: <CountryPage /> },
+      { path: 'country/:code', element: <CountryDetailPage /> },
     ],
   },
 ]);

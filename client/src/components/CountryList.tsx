@@ -12,9 +12,11 @@ import {
 
 import { GET_ALL_COUNTRIES } from '../graphql/queries';
 import { GetAllCountriesQuery } from '../gql/graphql';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 const CountryList = () => {
+  const navigate = useNavigate();
   const { loading, error, data } = useQuery<GetAllCountriesQuery>(GET_ALL_COUNTRIES);
 
   // Fonction pour convertir le code pays en format compatible avec country-flag-icons
@@ -103,8 +105,10 @@ const CountryList = () => {
                   transform: 'translateY(-4px)',
                   boxShadow: (theme) => theme.shadows[4],
                   borderColor: 'primary.light',
+                  cursor: 'pointer'
                 },
               }}
+              onClick={() => navigate(`/country/${country.code.toLowerCase()}`)}
             >
               <CardContent sx={{ p: 3 }}>
                 <Box
