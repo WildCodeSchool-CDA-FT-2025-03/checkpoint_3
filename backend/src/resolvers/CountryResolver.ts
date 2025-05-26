@@ -37,4 +37,19 @@ export class CountryResolver {
     await country.remove();
     return true;
   }
+
+  @Mutation(() => Country)
+  async updateCountry(
+    @Arg("id", { validate: true }) id: number,
+    @Arg("data", { validate: true }) data: NewCountryInput
+  ) {
+    const country = await Country.findOne({ where: { id } });
+    if (!country)
+      throw new GraphQLError("country not found", {
+        extensions: { code: "COUNTRY_NOT_FOUND" },
+      });
+    Object.assign(country, data);
+    await country.save();
+    return Country.findOne({ where: { id }, relations: { continent: true } });
+  }
 }
