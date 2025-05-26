@@ -1,12 +1,7 @@
 import { Col, Row, Card, Input, Button } from "antd";
 import { useState } from "react";
-import { Country } from "../App";
 
-type AddFormProps = {
-  setCountries: React.Dispatch<React.SetStateAction<Country[]>>;
-};
-
-export default function AddForm({ setCountries }: AddFormProps) {
+export default function AddForm() {
   const [newCountry, setNewCountry] = useState({
     name: "",
     emoji: "",
@@ -15,7 +10,7 @@ export default function AddForm({ setCountries }: AddFormProps) {
 
   const handleAdd = () => {
     if (newCountry.name && newCountry.emoji && newCountry.code) {
-      setCountries((countries) => [...countries, newCountry]);
+      console.info("newCountry: ", newCountry);
       setNewCountry({ name: "", emoji: "", code: "" });
     }
   };
