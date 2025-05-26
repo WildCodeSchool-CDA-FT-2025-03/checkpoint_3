@@ -87,6 +87,13 @@ export type OneCountriesQueryVariables = Exact<{
 
 export type OneCountriesQuery = { __typename?: 'Query', country: { __typename?: 'Country', code: string, emoji: string, id: number, name: string, continent?: { __typename?: 'Continent', id: number, name: string } | null } };
 
+export type CountryMutationVariables = Exact<{
+  data: NewCountryInput;
+}>;
+
+
+export type CountryMutation = { __typename?: 'Mutation', addCountry: { __typename?: 'Country', code: string, emoji: string, id: number, name: string, continent?: { __typename?: 'Continent', id: number, name: string } | null } };
+
 
 export const AllCountriesDocument = gql`
     query AllCountries {
@@ -177,3 +184,43 @@ export type OneCountriesQueryHookResult = ReturnType<typeof useOneCountriesQuery
 export type OneCountriesLazyQueryHookResult = ReturnType<typeof useOneCountriesLazyQuery>;
 export type OneCountriesSuspenseQueryHookResult = ReturnType<typeof useOneCountriesSuspenseQuery>;
 export type OneCountriesQueryResult = Apollo.QueryResult<OneCountriesQuery, OneCountriesQueryVariables>;
+export const CountryDocument = gql`
+    mutation Country($data: NewCountryInput!) {
+  addCountry(data: $data) {
+    code
+    continent {
+      id
+      name
+    }
+    emoji
+    id
+    name
+  }
+}
+    `;
+export type CountryMutationFn = Apollo.MutationFunction<CountryMutation, CountryMutationVariables>;
+
+/**
+ * __useCountryMutation__
+ *
+ * To run a mutation, you first call `useCountryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCountryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [countryMutation, { data, loading, error }] = useCountryMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCountryMutation(baseOptions?: Apollo.MutationHookOptions<CountryMutation, CountryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CountryMutation, CountryMutationVariables>(CountryDocument, options);
+      }
+export type CountryMutationHookResult = ReturnType<typeof useCountryMutation>;
+export type CountryMutationResult = Apollo.MutationResult<CountryMutation>;
+export type CountryMutationOptions = Apollo.BaseMutationOptions<CountryMutation, CountryMutationVariables>;

@@ -14,3 +14,18 @@ export const GET_ONE_COUNTRY = gql`
     }
   }
 `;
+
+export const ADD_ONE_COUNTRY = gql`
+  mutation Country($data: NewCountryInput!) {
+    addCountry(data: $data) {
+      code
+      continent {
+        id
+        name
+      }
+      emoji
+      id
+      name
+    }
+  }
+`;
