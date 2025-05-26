@@ -1,5 +1,4 @@
 import { Row } from "antd";
-import Header from "../components/layout/Header";
 import AddForm from "../components/home/AddForm";
 import CountryCard from "../components/home/CountryCard";
 import { useCountriesQuery } from "../types/graphql-generated";
