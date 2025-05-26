@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import CountryCard from "../components/CountryCard";
 import { useGetCountriesQuery } from "../types/graphql-generated";
 
 const Home = () => {
@@ -10,14 +12,13 @@ const Home = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Liste des pays</h1>
-      <ul className="space-y-2">
+      <section className="flex flex-wrap justify-center gap-2">
         {data?.countries.map((c) => (
-          <li key={c.code}>
-            {c.name} - {c.emoji}
-          </li>
+          <Link to="/" key={c.code} className="[text-decoration:none] [color:inherit]">
+            <CountryCard name={c.name} code={c.code} emoji={c.emoji} />
+          </Link>
         ))}
-      </ul>
+      </section>
     </div>
   );
 };

@@ -1,1 +1,14 @@
 @import 'tailwindcss';
+
+
+
+@layer base {
+  a {
+    @apply no-underline text-inherit;
+  }
+}
+
+a {
+  text-decoration: none;
+color: inherit;
+}
