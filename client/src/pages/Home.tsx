@@ -16,7 +16,7 @@ const Home = () => {
       <CountryForm />
       <section className="flex flex-wrap justify-center gap-2">
         {data?.countries.map((c) => (
-          <Link to="/" key={c.code} className="[text-decoration:none] [color:inherit]">
+          <Link to={`/country/${c.code}`} key={c.code} className="[text-decoration:none] [color:inherit]">
             <CountryCard name={c.name} code={c.code} emoji={c.emoji} />
           </Link>
         ))}

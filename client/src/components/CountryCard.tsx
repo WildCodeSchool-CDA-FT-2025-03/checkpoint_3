@@ -5,7 +5,7 @@ type CountryProps = {
 }
 
 
-const CountryCard = ({ name, code, emoji }: CountryProps) => {
+const CountryCard = ({ name, emoji }: CountryProps) => {
   const flag = emoji;
 
   return (
