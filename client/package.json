@@ -7,16 +7,24 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "codegen": "graphql-codegen --config codegen.config.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.8",
+    "@graphql-codegen/typescript": "^4.1.6",
     "@tailwindcss/vite": "^4.1.7",
+    "graphql": "^16.11.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
+    "@graphql-codegen/cli": "^5.0.6",
+    "@graphql-codegen/typescript-graphql-request": "^6.2.0",
+    "@graphql-codegen/typescript-operations": "^4.6.1",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
