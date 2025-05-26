@@ -18,3 +18,11 @@ export const ADD_COUNTRY_MUTATION = gql`
     }
   }
 `;
+
+export const DELETE_COUNTRY_MUTATION = gql`
+  mutation DeleteCountry($id: Float!) {
+    deleteCountry(id: $id) {
+      id
+    }
+  }
+`;
