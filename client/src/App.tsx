@@ -3,6 +3,7 @@ import { Row } from "antd";
 import Header from "./components/Header";
 import AddForm from "./components/AddForm";
 import CountryCard from "./components/CountryCard";
+import { useCountriesQuery } from "./types/graphql-generated";
 
 export type Country = {
   name: string;
@@ -11,34 +12,23 @@ export type Country = {
 };
 
 export default function App() {
-  const [countries, setCountries] = useState<Country[]>([
-    { name: "France", emoji: "🇫🇷", code: "FR" },
-    { name: "China", emoji: "🇨🇳", code: "CN" },
-    { name: "Canada", emoji: "🇨🇦", code: "CA" },
-    { name: "Australia", emoji: "🇦🇺", code: "AU" },
-    { name: "Kenya", emoji: "🇰🇪", code: "KE" },
-    { name: "Brazil", emoji: "🇧🇷", code: "BR" },
-  ]);
+  const { data, loading, error } = useCountriesQuery();
 
-  const handleDelete = (index: number) => {
-    setCountries(countries.filter((_, i) => i !== index));
-  };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  console.log(data);
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
       <Header />
 
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        <AddForm setCountries={setCountries} />
+        <AddForm />
 
         <Row gutter={[16, 16]}>
-          {countries.map((country, index) => (
-            <CountryCard
-              key={index}
-              country={country}
-              handleDelete={handleDelete}
-              index={index}
-            />
+          {data?.countries.map((country, index) => (
+            <CountryCard key={index} country={country} />
           ))}
         </Row>
       </div>
