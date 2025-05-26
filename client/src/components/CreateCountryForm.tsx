@@ -1,23 +1,31 @@
 import { useState } from "react";
 import InputForm from "./InputForm";
+import {
+  useAddCountryMutation,
+  useGetCountriesQuery,
+} from "../types/graphql-generated";
 
 export default function CreateCountryForm() {
   const [data, setData] = useState({
-    name: '',
-    emoji: '',
-    code: ''
+    name: "",
+    emoji: "",
+    code: "",
   });
+  const [addCountry] = useAddCountryMutation();
+  const { refetch } = useGetCountriesQuery();
 
-   const handleInputChange = (
-     e: React.ChangeEvent<HTMLInputElement>,
-     field: string
-   ) => {
-     setData({ ...data, [field]: e.target.value });
-   };
-  const handleSubmit = ()=> {
-
-  }
-  console.log(data)
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    setData({ ...data, [field]: e.target.value });
+  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await addCountry({ variables: { data: data } });
+    await refetch();
+  };
+  console.log(data);
   return (
     <div>
       <form

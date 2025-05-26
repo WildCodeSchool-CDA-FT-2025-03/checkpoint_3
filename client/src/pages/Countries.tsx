@@ -1,6 +1,5 @@
 import { useGetCountriesQuery } from '../types/graphql-generated';
-import Card from '../components/Card';
-import Header from "../components/Header";
+import Card from "../components/Card";
 import CreateCountryForm from "../components/CreateCountryForm";
 
 export default function Countries() {
@@ -10,15 +9,16 @@ export default function Countries() {
   if (loading) return <p>Loading</p>;
   console.log(data?.countries);
   return (
-    <>
-      <Header />
+    <div className="container mx-auto">
       <CreateCountryForm />
-      <div className="flex flex-row flex-wrap">
+      <div className="flex flex-row flex-wrap m-3">
         {data &&
           data?.countries.map((country) => (
-            <Card key={country.name} name={country.name} flag={country.emoji} />
+            <a key={country.name} href={`/country/${country.code}`}>
+              <Card name={country.name} flag={country.emoji} />
+            </a>
           ))}
       </div>
-    </>
+    </div>
   );
 }
