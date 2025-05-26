@@ -5,7 +5,7 @@ import Header from "../components/Header";
 
 function Country() {
   const { id } = useParams();
-  console.log(id);
+
   const { data, loading, error } = useOneCountriesQuery({
     variables: {
       code: id as string,
@@ -14,8 +14,6 @@ function Country() {
 
   if (error) return <p>Error</p>;
   if (loading) return <p>loading</p>;
-
-  console.log(data);
 
   return (
     <>
