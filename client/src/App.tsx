@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Card, Input, Button, Row, Col } from "antd";
+import { Card, Button, Row, Col } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import Header from "./components/Header";
+import AddForm from "./components/AddForm";
 
-type Country = {
+export type Country = {
   name: string;
   emoji: string;
   code: string;
@@ -19,19 +20,6 @@ export default function App() {
     { name: "Brazil", emoji: "🇧🇷", code: "BR" },
   ]);
 
-  const [newCountry, setNewCountry] = useState({
-    name: "",
-    emoji: "",
-    code: "",
-  });
-
-  const handleAdd = () => {
-    if (newCountry.name && newCountry.emoji && newCountry.code) {
-      setCountries([...countries, newCountry]);
-      setNewCountry({ name: "", emoji: "", code: "" });
-    }
-  };
-
   const handleDelete = (index: number) => {
     setCountries(countries.filter((_, i) => i !== index));
   };
@@ -39,74 +27,9 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
       <Header />
-
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        <Card style={{ marginBottom: "30px", borderRadius: "8px" }}>
-          <Row gutter={16} align="middle">
-            <Col span={7}>
-              <div>
-                <div style={{ marginBottom: "8px", fontWeight: 500 }}>Name</div>
-                <Input
-                  size="large"
-                  value={newCountry.name}
-                  onChange={(e) =>
-                    setNewCountry({ ...newCountry, name: e.target.value })
-                  }
-                  placeholder="Country name"
-                />
-              </div>
-            </Col>
-            <Col span={7}>
-              <div>
-                <div style={{ marginBottom: "8px", fontWeight: 500 }}>
-                  Emoji
-                </div>
-                <Input
-                  size="large"
-                  value={newCountry.emoji}
-                  onChange={(e) =>
-                    setNewCountry({ ...newCountry, emoji: e.target.value })
-                  }
-                  placeholder="🏳️"
-                />
-              </div>
-            </Col>
-            <Col span={7}>
-              <div>
-                <div style={{ marginBottom: "8px", fontWeight: 500 }}>Code</div>
-                <Input
-                  size="large"
-                  value={newCountry.code}
-                  onChange={(e) =>
-                    setNewCountry({
-                      ...newCountry,
-                      code: e.target.value.toUpperCase(),
-                    })
-                  }
-                  placeholder="XX"
-                  maxLength={2}
-                />
-              </div>
-            </Col>
-            <Col span={3}>
-              <Button
-                type="primary"
-                size="large"
-                onClick={handleAdd}
-                style={{
-                  width: "100%",
-                  backgroundColor: "#e91e63",
-                  borderColor: "#e91e63",
-                  marginTop: "22px",
-                }}
-              >
-                Add
-              </Button>
-            </Col>
-          </Row>
-        </Card>
+        <AddForm setCountries={setCountries} />
 
-        {/* Countries Grid */}
         <Row gutter={[16, 16]}>
           {countries.map((country, index) => (
             <Col xs={12} sm={8} md={6} lg={4} key={index}>
