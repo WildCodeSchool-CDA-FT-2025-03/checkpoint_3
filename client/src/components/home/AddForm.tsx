@@ -1,9 +1,13 @@
 import { Col, Row, Card, Input, Button } from "antd";
 import { useState } from "react";
 import { useAddCountryMutation } from "../../types/graphql-generated";
+import { COUNTRIES_QUERY } from "../../schemas/county.schema";
 
 export default function AddForm() {
-  const [addCountry] = useAddCountryMutation();
+  const [addCountry] = useAddCountryMutation({
+    refetchQueries: [{ query: COUNTRIES_QUERY }],
+    awaitRefetchQueries: true,
+  });
 
   const [newCountry, setNewCountry] = useState({
     name: "",
