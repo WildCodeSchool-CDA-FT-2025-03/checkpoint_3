@@ -18,18 +18,14 @@ export default function Homepage() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
-      <Header />
+    <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
+      <AddForm />
 
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        <AddForm />
-
-        <Row gutter={[16, 16]}>
-          {data?.countries.map((country, index) => (
-            <CountryCard key={index} country={country} />
-          ))}
-        </Row>
-      </div>
+      <Row gutter={[16, 16]}>
+        {data?.countries.map((country, index) => (
+          <CountryCard key={index} country={country} />
+        ))}
+      </Row>
     </div>
   );
 }
